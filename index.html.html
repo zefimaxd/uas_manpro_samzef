@@ -1,0 +1,874 @@
+<html>
+<head>
+<title>KOLCOM | Tiket Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  Anda Belum Log in
+</div>
+<img src="img/header.png"></img>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0} 
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+.topnav2 {
+  background-color: #4caf50;
+  overflow: hidden;
+  }
+.topnav2 a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  horizontal-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+.topnav2 a:hover {
+  background-color: #ddd;
+  color: black;
+  }
+.topnav2 a.active {
+  background-color: #333;
+  color: white;
+  }
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  }
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  horizontal-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  }
+.topnav a:hover {
+  background-color: #4caf50;
+  color: black;
+  }
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+  }
+h1 {
+font-family: Calibri;
+}
+p {
+font-family: Calibri;
+}
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.home {
+ vertical-align: middle;
+ width: 70px;
+ height: 70px;
+ border-radius: 50%;
+ }
+ .home2{
+ vertical-align: middle;
+ width: 130px;
+ height: 130px;
+ border-radius: 50%;
+ }
+ * {
+  box-sizing: border-box;
+}
+
+/* Column container */
+.row { 
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%; /* Set the width of the sidebar */
+  background-color: #fff; /* Grey background color */
+  padding: 20px; /* Some padding */
+}
+
+/* Main column */
+.main { 
+  flex: 70%; /* Set the width of the main content */
+  background-color: white; /* White background color */
+  padding: 20px; /* Some padding */
+}
+@media screen and (max-width: 700px) {
+  .row { 
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #333;
+  text-align: center;
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+  padding: 5px;
+  background: #4CAF50;
+  color: white !important
+}
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #ddd; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Style the front side */
+.flip-box-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-box-back {
+  background-color: #4caf50;
+  color: white;
+  transform: rotateY(180deg);
+}
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column2 {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+* {box-sizing: border-box;}
+
+/* Style the input container */
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Style the form icons */
+.icon {
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Style the input fields */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid #333;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+/* Style the input container */
+.topnav .login-container {
+  float: right;
+}
+
+/* Style the input field inside the navbar */
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
+}
+
+/* Style the button inside the input container */
+.topnav .login-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .login-container button:hover {
+  background: #ccc;
+}
+
+/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav .login-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .login-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc; 
+  }
+}
+.footer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+.container {
+  position: relative; 
+  max-width: 800px; /* Maximum width */
+  margin: 0 auto; /* Center it */
+}
+
+.container .content {
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  width: 100%; /* Full width */
+  padding: 20px; /* Some padding */
+}
+s {
+font-family: Retro Thunders;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Style the list (remove margins and bullets, etc) */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the list items */
+ul li {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+  position: relative;
+}
+
+/* Add a light grey background color on hover */
+ul li:hover {
+  background-color: #eee;
+}
+
+/* Style the close button (span) */
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.close:hover {background: #bbb;
+}
+.rectangle {
+  height: 200px;
+  width: 250px;
+  background-color: #4caf50;
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.vl {
+  border-left: 6px black;
+  height: 200px;
+}
+
+</style>
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+<div class="topnav">
+  <a class="active" href="#home"><img src="img/home.png" alt="Avatar" class="home"></a>
+    <a href="#news"><img src="img/Pesawat.png" alt="Avatar" class="avatar">Pesawat</a>
+  <a href="coming.html"><img src="img/bis.png" alt="Avatar" class="avatar">Bus</a>
+  <a href="coming.html"><img src="img/taxi.png" alt="Avatar" class="avatar">Taxi Online</a>
+  <a href="coming.html"><img src="img/hotel.png" alt="Avatar" class="avatar">Hotel</a>
+  <div class="login-container">
+  <a href="gallery.html">Hubungi Kami</a>
+  <a href="masuk.html">Masuk</a>
+  <a href="daftar.html">Daftar</a>
+  </div>
+</div>
+  <img src="img/banner2.png" alt="Norway" style="display: block; margin: auto;">
+  <div style="display: block; margin: auto;">
+    <h3>SAMUEL WAHYU KRISTIANTO 19.N1.0004</h3>
+    <h3>ZEFI PHILIA MAXDIEL 18.N1.0028</h3>
+  </div>
+</div>
+</head>
+<body>
+
+<div class="row">
+  <div class="side">
+  <img src="img/home.png" style="width: 150px; display: block; margin: auto;"></img>
+  <h3 align="center">Kenapa Memesan di kami?</h3>
+  <div class="rectangle" style="display: block; margin: auto;">
+  <img src="img/promo.jpg" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Promo Terbaik Setiap Hari</h3><h5 align="center">Selalu dapatkan harga termurah, sepanjang tahun.</h5></a>
+
+  </div>
+  <br>
+  <div class="rectangle" style="display: block; margin: auto;">
+  <img src="img/payment.jpg" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Pembayaran Aman dan Mudah</h3><h5 align="center">Tersedia berbagai metode pembayaran yang terjamin keamanannya.</h5></a>
+  
+
+  </div>
+  <br>
+  <div class="rectangle" style="display: block; margin: auto;">
+  <img src="img/cs.jpg" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Layanan Pelanggan 24/7</h3><h5 align="center">Kami selalu siap membantu melancarkan perjalanan Anda.</h5></a>
+  
+
+  </div>
+  </div>
+  <div class="main">
+	<div class="topnav2">
+		<a class="active" href="#news"><img src="img/Pesawat.png" alt="Avatar" class="avatar"></a>
+		<a href="coming.html"><img src="img/bis.png" alt="Avatar" class="avatar"></a>
+		<a href="coming.html"><img src="img/taxi.png" alt="Avatar" class="avatar"></a>
+		<a href="coming.html"><img src="img/hotel.png" alt="Avatar" class="avatar"></a>
+	</div>
+	<div class="row">
+  <div class="column">
+  <div class="flip-box">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+	<div class="container">
+      <img src="img/bromo.png" style="width:300px;"></img>
+	  <div class="content">
+    <p>Mendaki Gunung</p>
+	<h4>Bromo</h4>
+  </div>
+</div>
+    </div>
+    <div class="flip-box-back">
+      <h5>Naik ke puncak gunung</h5>
+	  <h5>Bareng kita aja<br>
+	  <img src="img/home.png" alt="Avatar" class="home2"></h5>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="column">
+  <div class="flip-box">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+	<div class="container">
+      <img src="img/ampat.png" style="width:300px;"></img>
+	  <div class="content">
+    <p>Diving bareng ikan di</p>
+	<h4>Raja Ampat</h4>
+  </div>
+</div>
+    </div>
+    <div class="flip-box-back">
+      <h4>Yuk Liburan ke Raja Ampat<br>dan<br>Nikmati Seru nya beli tiket online disini<br><img src="home.png" alt="Avatar" class="home2"></h4>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="column">
+  <div class="column">
+  <div class="flip-box">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+	<div class="container">
+      <img src="img/bali.png" style="width:300px;"></img>
+	  <div class="content">
+    <p>Destinasi Keren di</p>
+	<h4>Bali</h4>
+  </div>
+</div>
+    </div>
+    <div class="flip-box-back">
+	  <h4>Mau jalan-jalan ke Bali ?<br>Pake Promo dari <s>Kolcom</s> aja<br><img src="img/home.png" alt="Avatar" class="home2"></h4>
+    </div>
+  </div>
+</div>
+  </div>
+  </div>
+</div>
+<div>
+<ul>
+  <li><a><img src="img/Pesawat.png" alt="Avatar" class="avatar">Cari Tiket pesawat MURAH &  PROMO disini</a></li>
+ </ul>
+</div>
+<h1>MAU KEMANA HARI INI?</h1>
+<div class="row">
+  <div class="column2">
+  <form action="/action_page.php">
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Dari" name="city">
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="text" placeholder="Jumlah Orang" name="city">
+  </div>
+<div class="row">
+  <div class="column2">
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="text" placeholder="Pergi(dd-mm-yyyy)" name="datetime">
+  </div>
+  </div>
+  <div class="column2">
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="text" placeholder="Pulang" name="datetime">
+  </div>
+  </div>
+</div>
+</form>
+  </div>
+  <div class="column2">
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Tujuan" name="city">
+  </div>
+  <div class="column2">
+</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- Trigger/Open The Modal -->
+<button id="myBtn" class="btn">Cari</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Hasil Pencarian Kami</h2>
+    </div>
+    <div class="modal-body">
+	<div class="row">
+  <div class="column"><div class="card">
+  <img src="garuda.png" alt="Denim Jeans" style="width:100%">
+  <h1>Garuda Indonesia</h1>
+  <p class="price">IDR 1.200.000</p>
+  <p>Penerbangan menggunakan Garuda Indonesia</p>
+  <p><button ><a href="pembayaran.html" >Check Out</a></button></p>
+</div>
+</div>
+  <div class="column"><div class="card">
+  <img src="lion.png" alt="Denim Jeans" style="width:100%">
+  <h1>Lion Air</h1>
+  <p class="price">IDR 654.000</p>
+  <p>Penerbangan menggunakan Lion Air</p>
+  <p><button><a href="pembayaran.html" >Check Out</a></button></p>
+</div>
+</div>
+  <div class="column"><div class="card">
+  <img src="Trigana.png" alt="Denim Jeans" style="width:100%">
+  <h1>Trigana Air</h1>
+  <p class="price">IDR 780.000</p>
+  <p>Penerbangan menggunakan Trigana</p>
+  <p><button><a href="pembayaran.html" >Check Out</a></button></p>
+</div>
+</div>
+</div>
+      <p></p>
+      <p></p>
+    </div>
+    <div class="modal-footer">
+      <h3>Hey Kamu pilihnya jangan lama-lama</h3>
+    </div>
+  </div>
+
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="column"><img src="img/calendar1.png" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Smart Reschedule</h3><h5 align="center">Memudahkan Anda mengatur ulang penerbangan.</h5></a></div>
+  <div class="column"><img src="img/roundtrip.jpg" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Smart Roundtrip</h3><h5 align="center">Dapatkan diskon ekstra bila memesan pulang-pergi.</h5></a></div>
+  <div class="column"><img src="img/refund.png" alt="Avatar" class="avatar" Style="display: block; margin: auto;"><h3 align="center">Smart Refund</h3><h5 align="center">Ajukan refund tanpa hambatan, via app atau website.</h5></a></div>
+</div>
+
+</div>
+</div>
+<br>
+<br>
+
+</body>
+<footer>
+
+<div class="footer">
+  <p>&copy Kolcom 2019</p>
+</div>
+</footer>
+</html>
